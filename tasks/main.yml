@@ -1,0 +1,15 @@
+---
+
+- name: nginx | Install dependencies
+  apt: pkg=python-pycurl
+  tags: [nginx]
+
+- name: nginx | Add nginx repository
+  apt_repository: repo=ppa:nginx/stable
+  tags: [nginx]
+
+- name: nginx | Install nginx
+  apt: pkg=nginx
+  notify:
+      - restart nginx
+  tags: [nginx]

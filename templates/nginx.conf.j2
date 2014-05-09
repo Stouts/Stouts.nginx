@@ -14,11 +14,11 @@ http {
     include       mime.types;
     default_type  application/octet-stream;
 
-    sendfile        {{nginx_sendfile}};
+    sendfile        {{'on' if nginx_sendfile else 'off'}};
 
     keepalive_timeout  {{nginx_keepalive_timeout}};
 
-    gzip  {{nginx_gzip}};
+    gzip  {{'on' if nginx_gzip else 'off'}};
 
     server_names_hash_bucket_size {{nginx_server_names_hash_bucket_size}};
 

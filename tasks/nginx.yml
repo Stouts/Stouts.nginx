@@ -1,0 +1,15 @@
+---
+
+- name: Install dependencies
+  apt: pkg=python-pycurl
+
+- name: Add nginx repository
+  apt_repository: repo=ppa:nginx/stable
+
+- name: Install nginx
+  apt: pkg=nginx
+
+- name: Configure nginx
+  template: src=nginx.conf.j2 dest={{nginx_dir}}/nginx.conf
+  notify:
+      - restart nginx

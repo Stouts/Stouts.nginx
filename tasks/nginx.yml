@@ -12,4 +12,4 @@
 - name: Configure nginx
   template: src=nginx.conf.j2 dest={{nginx_dir}}/nginx.conf
   notify:
-      - restart nginx
+      - nginx restart

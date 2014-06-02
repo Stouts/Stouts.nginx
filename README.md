@@ -10,6 +10,9 @@ Ansible role which simple manage nginx
 ```yaml
 nginx_enabled: yes                  # The role in enabled
 nginx_dir: /etc/nginx               # Nginx config directory
+nginx_sites_dir: "{{nginx_dir}}/sites-enabled" # Nginx include directory
+nginx_default_site: "{{nginx_sites_dir}}/default"
+nginx_delete_default_site: yes
 nginx_user: www-data                # -------------------
 nginx_worker_processes: 4           #   See nginx docs
 nginx_worker_connections: 1024      # -------------------

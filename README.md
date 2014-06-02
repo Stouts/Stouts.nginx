@@ -5,6 +5,10 @@ Stouts.nginx
 
 Ansible role which simple manage nginx
 
+* Install and upgrade;
+* Provide hanlers for restart and reload;
+* Support simple site configurations.
+
 #### Variables
 
 ```yaml
@@ -39,6 +43,25 @@ nginx_servers:                      # Setup servers (simplest interface, use cfg
                                     #       - location / { root /test; index index.html; }
 ```
 
+#### Usage
+
+Add `Stouts.nginx` to your roles and set vars in your playbook file.
+
+Example:
+
+```yaml
+
+- hosts: all
+
+  roles:
+    - Stouts.nginx
+
+  vars:
+    - listen 80;
+    - server_name google.com;
+    - location / { root /var/www/google; index index.html; }
+```
+
 #### License
 
 Licensed under the MIT License. See the LICENSE file for details.
@@ -46,4 +69,3 @@ Licensed under the MIT License. See the LICENSE file for details.
 #### Feedback, bug-reports, requests, ...
 
 Are [welcome](https://github.com/Stouts/Stouts.nginx/issues)!
-

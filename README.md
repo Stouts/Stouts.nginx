@@ -57,9 +57,10 @@ Example:
     - Stouts.nginx
 
   vars:
-    - listen 80;
-    - server_name google.com;
-    - location / { root /var/www/google; index index.html; }
+    nginx_servers:
+      - listen 80;
+      - server_name google.com;
+      - location / { root /var/www/google; index index.html; }
 ```
 
 #### License

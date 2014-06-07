@@ -16,8 +16,8 @@ http {
 
     sendfile {{'on' if nginx_sendfile else 'off'}};
 
-    tcp_nodelay {{'on' if nginx_tcp_nodelay else 'off'}};; 
-    tcp_nopush {{'on' if nginx_tcp_nopush else 'off'}};; ;
+    tcp_nodelay {{'on' if nginx_tcp_nodelay else 'off'}};
+    tcp_nopush {{'on' if nginx_tcp_nopush else 'off'}};
 
     {% if nginx_open_file_cache %}
     open_file_cache max=200000 inactive=20s;

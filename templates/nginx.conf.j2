@@ -19,21 +19,21 @@ http {
     tcp_nodelay {{'on' if nginx_tcp_nodelay else 'off'}};
     tcp_nopush {{'on' if nginx_tcp_nopush else 'off'}};
 
-    {% if nginx_open_file_cache %}
+{% if nginx_open_file_cache %}
     open_file_cache max=200000 inactive=20s;
     open_file_cache_valid 30s;
     open_file_cache_min_uses 2;
     open_file_cache_errors on;
-    {% endif %}
+{% endif %}
 
     keepalive_timeout  {{nginx_keepalive_timeout}};
     keepalive_requests  {{nginx_keepalive_requests}};
 
-    {% if nginx_gzip %}
+{% if nginx_gzip %}
     gzip on;
     gzip_disable "msie6";
     gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript application/javascript;
-    {% endif %}
+{% endif %}
 
     server_names_hash_bucket_size {{nginx_server_names_hash_bucket_size}};
 

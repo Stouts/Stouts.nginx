@@ -40,17 +40,17 @@ http {
     access_log {{nginx_access_log}};
     error_log {{nginx_error_log}};
 
-    {% if nginx_http_options %}{% for name, value in nginx_http_options.items() %}
-    {{name}} {{value}};
-    {% endfor %}{% endif %}
+{% if nginx_http_options %}{% for option in nginx_http_options %}
+    {{option}}
+{% endfor %}{% endif %}
 
-    {% if nginx_servers %}{% for server in nginx_servers %}
+{% if nginx_servers %}{% for server in nginx_servers %}
     server {
       {% for option in server %}
       {{option}}
       {% endfor %}
     }
-    {% endfor %}{% endif %}
+{% endfor %}{% endif %}
 
     include {{nginx_dir}}/conf.d/*.conf;
     include {{nginx_sites_dir}}/*;

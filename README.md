@@ -26,10 +26,10 @@ nginx_gzip: yes
 nginx_server_names_hash_bucket_size: 128
 nginx_access_log: /var/log/nginx/access.log
 nginx_error_log: /var/log/nginx/error.log
-nginx_http_options:                 # Additional http options
+nginx_http_options:                 # Additional http options (each line will be added as is)
                                     # Ex: nginx_http_options:
-                                    #       name: value
-                                    #       name: value
+                                    #       - auth_basic "You shall not pass!";
+                                    #       - auth_basic_user_file {{nginx_auth_file}};
 
 nginx_servers:                      # Setup servers (simplest interface, use cfg files for large configurations)
                                     # Ex: nginx_servers:
@@ -41,6 +41,11 @@ nginx_servers:                      # Setup servers (simplest interface, use cfg
                                     #       - listen 80;
                                     #       - server_name test.com;
                                     #       - location / { root /test; index index.html; }
+
+nginx_auth_file: "{{nginx_dir}}/.htpasswd" # Where stored passwords
+nginx_auth_users: []                # Setup users for http authentication
+                                    # nginx_auth_users:
+                                    #   - { name: team, password: secret }
 ```
 
 #### Usage

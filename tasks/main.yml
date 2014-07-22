@@ -1,4 +1,5 @@
 ---
 
 - include: nginx.yml
+  when: nginx_enabled
   tags: [nginx]

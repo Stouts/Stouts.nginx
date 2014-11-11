@@ -2,8 +2,7 @@ Stouts.nginx
 ============
 
 [![Build Status](http://img.shields.io/travis/Stouts/Stouts.nginx.svg?style=flat-square)](https://travis-ci.org/Stouts/Stouts.nginx)
-[![Galaxy](http://img.shields.io/badge/galaxy-Stouts.nginx-blue.svg?style=flat-square)](https://galaxy.nginx.com/list#/roles/854)
-[![Tag](http://img.shields.io/github/tag/Stouts/Stouts.nginx.svg?style=flat-square)]()
+[![Galaxy](http://img.shields.io/badge/galaxy-Stouts.nginx-blue.svg?style=flat-square)](https://galaxy.ansible.com/list#/roles/854)
 
 Ansible role which simple manage nginx
 

@@ -39,3 +39,5 @@ nginx_auth_file: "{{nginx_dir}}/.htpasswd" # Where stored passwords
 nginx_auth_users: []                # Setup users for http authentication
                                     # nginx_auth_users:
                                     #   - { name: team, password: secret }
+
+nginx_status: 127.0.0.1             # Report about nginx state by IP. Set empty for disable.

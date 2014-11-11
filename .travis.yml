@@ -23,4 +23,4 @@ script:
     || (echo 'Idempotence test: fail' && exit 1)
 
   # Check fog nginx is running
-  - "curl http://localhost/"
+  - curl http://127.0.0.1/ | grep Active || exit 1

@@ -44,6 +44,18 @@ http {
     {{option}}
 {% endfor %}{% endif %}
 
+{% if nginx_status %}
+    server {
+        listen {{ nginx_status }};
+        location / {
+            access_log off;
+            allow 127.0.0.1;
+            deny all;
+            stub_status on;
+        }
+    }
+{% endif %}
+
 {% if nginx_servers %}{% for server in nginx_servers %}
     server {
       {% for option in server %}

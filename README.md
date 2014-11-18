@@ -34,14 +34,14 @@ nginx_http_options:                 # Additional http options (each line will be
 
 nginx_servers:                      # Setup servers (simplest interface, use cfg files for large configurations)
                                     # Ex: nginx_servers:
-                                    #     -
-                                    #       - listen 80;
-                                    #       - server_name localhost;
-                                    #       - location / { root html; index index.html; }
-                                    #     -
-                                    #       - listen 80;
-                                    #       - server_name test.com;
-                                    #       - location / { root /test; index index.html; }
+                                    #     - |
+                                    #       listen 80;
+                                    #       server_name localhost;
+                                    #       location / { root html; index index.html; }
+                                    #     - |
+                                    #       listen 80;
+                                    #       server_name test.com;
+                                    #       location / { root /test; index index.html; }
 
 nginx_auth_file: "{{nginx_dir}}/.htpasswd" # Where stored passwords
 nginx_auth_users: []                # Setup users for http authentication
@@ -66,9 +66,10 @@ Example:
 
   vars:
     nginx_servers:
-      - listen 80;
-      - server_name google.com;
-      - location / { root /var/www/google; index index.html; }
+    - |
+      listen 80;
+      server_name google.com;
+      location / { root /var/www/google; index index.html; }
 ```
 
 #### License

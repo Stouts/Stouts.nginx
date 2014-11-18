@@ -56,11 +56,11 @@ http {
     }
 {% endif %}
 
-{% if nginx_servers %}{% for server in nginx_servers %}
+{% if nginx_servers %}{% for server_config in nginx_servers %}
     server {
-      {% for option in server %}
-      {{option}}
-      {% endfor %}
+
+      {{ server_config.split('\n')|join('\t\n') }}
+
     }
 {% endfor %}{% endif %}
 

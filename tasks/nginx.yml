@@ -1,14 +1,10 @@
 ---
 
-- name: Install dependencies
-  apt: pkg=python-pycurl
+- include: install.deb.yml
+  when: ansible_os_family == 'Debian'
 
-- name: Add nginx repository
-  apt_repository: repo=ppa:nginx/stable
-
-- name: Install Dependencies
-  apt: pkg={{item}}
-  with_items: [ nginx, python-passlib ] 
+- include: install.yum.yml
+  when: ansible_os_family == 'RedHat'
 
 - name: Delete default site
   action: file path={{nginx_default_site}} state=absent
@@ -24,3 +20,6 @@
   template: src=nginx.conf.j2 dest={{nginx_dir}}/nginx.conf
   notify:
     - nginx restart
+
+- name: Ensure the sites directory is exists
+  file: name={{nginx_sites_dir}} state=directory

@@ -5,6 +5,7 @@
 
 - name: Add nginx repository
   apt_repository: repo=ppa:nginx/stable
+  when: nginx_apt_use_repo
 
 - name: Install Dependencies
   apt: pkg={{item}}

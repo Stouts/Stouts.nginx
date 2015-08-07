@@ -3,8 +3,11 @@
 - include: install.deb.yml
   when: ansible_os_family == 'Debian'
 
-- include: install.yum.yml
+- include: install.red.yml
   when: ansible_os_family == 'RedHat'
+
+- name: Ensure that Nginx user is exist
+  user: name={{nginx_user}} system=yes
 
 - name: Delete default site
   action: file path={{nginx_default_site}} state=absent

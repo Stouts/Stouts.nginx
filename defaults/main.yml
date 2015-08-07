@@ -44,5 +44,5 @@ nginx_status: 127.0.0.1             # Report about nginx state by IP. Set empty 
 
 nginx_service_name: nginx
 nginx_yum_pkg: nginx
-nginx_yum_enablerepo: no
+nginx_yum_enablerepo: nginx
 nginx_yum_disablerepo: no

@@ -1,5 +1,7 @@
 ---
 
+- include_vars: "{{ansible_distribution}}.yml"
+
 - name: Install dependencies
   apt: pkg=python-pycurl
 

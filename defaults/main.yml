@@ -46,4 +46,4 @@ nginx_service_name: nginx
 nginx_yum_pkg: nginx
 nginx_yum_enablerepo: nginx
 nginx_yum_disablerepo: no
-nginx_apt_use_repo: yes
+nginx_apt_use_ppa_repo: no         # Force use of nginx PPA repo, even if Ansible detects a non-compatible distro

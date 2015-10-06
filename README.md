@@ -49,6 +49,7 @@ nginx_auth_users: []                # Setup users for http authentication
                                     #   - { name: team, password: secret }
 
 nginx_status: 127.0.0.1             # Report about nginx state by IP. Set empty for disable.
+nginx_apt_use_ppa_repo: no          # Force use of nginx PPA repo, even if Ansible detects a non-compatible distro
 ```
 
 #### Usage

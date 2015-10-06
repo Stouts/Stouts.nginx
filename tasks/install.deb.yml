@@ -7,7 +7,7 @@
 
 - name: Add nginx repository
   apt_repository: repo=ppa:nginx/stable
-  when: nginx_apt_use_ppa_repo or (ansible_distribution != "Debian")
+  when: nginx_apt_use_ppa_repo and ansible_distribution == "Ubuntu"
 
 - name: Install Dependencies
   apt: pkg={{item}}

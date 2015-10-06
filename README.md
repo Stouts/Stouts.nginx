@@ -49,7 +49,7 @@ nginx_auth_users: []                # Setup users for http authentication
                                     #   - { name: team, password: secret }
 
 nginx_status: 127.0.0.1             # Report about nginx state by IP. Set empty for disable.
-nginx_apt_use_ppa_repo: no          # Force use of nginx PPA repo, even if Ansible detects a non-compatible distro
+nginx_apt_use_ppa_repo: yes         # Use of nginx PPA repo
 ```
 
 #### Usage
@@ -80,3 +80,11 @@ Licensed under the MIT License. See the LICENSE file for details.
 #### Feedback, bug-reports, requests, ...
 
 Are [welcome](https://github.com/Stouts/Stouts.nginx/issues)!
+
+If you wish to express your appreciation for the role, you are welcome to send
+a postcard to:
+
+    Kirill Klenov
+    pos. Severny 8-3
+    MO, Istra, 143500
+    Russia

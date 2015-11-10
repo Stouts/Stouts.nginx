@@ -1,5 +1,8 @@
 ---
 
+- name: Ensure libselinux-python is installed
+  yum: name=libselinux-python
+
 - name: Setup repo
   copy: src=nginx.repo dest=/etc/yum.repos.d/nginx.repo
 

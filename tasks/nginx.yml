@@ -24,3 +24,6 @@
 
 - name: Ensure the sites directory is exists
   file: name={{nginx_sites_dir}} state=directory
+
+- name: Ensure that nginx is started
+  service: name={{nginx_service_name}} state=started enabled=yes

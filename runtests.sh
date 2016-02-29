@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 IMAGES=(
     "horneds/stouts-centos7"
@@ -14,11 +14,19 @@ TESTS=(
 
 APPDIR=/var/tests
 CURDIR=`pwd`
+ARGS=("$@")
+
+docker info || exit 1
 
 assert () {
     echo "ASSERT: $1"
-    docker exec -it $RUNNER $1 || ( echo ${2-'Test is failed'} && exit 1 )
+    execute "$@" || ( echo ${2-'Test is failed'} && exit 1 )
     echo "SUCCESS"
+}
+
+execute () {
+    docker exec -it $RUNNER $1
+    return $?
 }
 
 suite () {
@@ -46,6 +54,11 @@ do
         docker stop $RUNNER
         exit 1
     }
+
+    if [[ "$1" = "shell" ]]; then
+        echo "Run shell"
+        execute /bin/bash
+    fi
 
     docker stop $RUNNER
 

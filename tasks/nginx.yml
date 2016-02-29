@@ -12,17 +12,15 @@
 - name: Delete default site
   action: file path={{nginx_default_site}} state=absent
   when: nginx_delete_default_site
-  notify:
-    - nginx restart
+  notify: nginx restart
 
 - name: Encrypt http auth passwords
   htpasswd: path={{nginx_auth_file}} name={{item.name}} password={{item.password}}
-  with_items: nginx_auth_users
+  with_items: "{{nginx_auth_users}}"
 
 - name: Configure nginx
   template: src=nginx.conf.j2 dest={{nginx_dir}}/nginx.conf
-  notify:
-    - nginx restart
+  notify: nginx restart
 
 - name: Ensure the sites directory is exists
   file: name={{nginx_sites_dir}} state=directory

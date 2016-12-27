@@ -37,12 +37,12 @@ http {
 
     server_names_hash_bucket_size {{nginx_server_names_hash_bucket_size}};
 
-    access_log {{nginx_access_log}};
-    error_log {{nginx_error_log}};
-
 {% if nginx_http_options %}{% for option in nginx_http_options %}
     {{option}}
 {% endfor %}{% endif %}
+
+    access_log {{nginx_access_log}};
+    error_log {{nginx_error_log}};
 
 {% if nginx_status %}
     server {

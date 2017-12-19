@@ -47,3 +47,4 @@ nginx_yum_pkg: nginx
 nginx_yum_enablerepo: nginx
 nginx_yum_disablerepo: no
 nginx_apt_use_ppa_repo: yes         # Use of nginx PPA repo
+nginx_enable_dynamic_modules: no    # Enable dynamic modules like geo

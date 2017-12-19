@@ -13,6 +13,12 @@ events {
     worker_connections  {{nginx_worker_connections}};
 }
 
+{% if nginx_streams_dir %}
+streams {
+    include {{nginx_streams_dir}}/*;
+}
+{% endif %}
+
 http {
     include       mime.types;
     default_type  application/octet-stream;
@@ -61,13 +67,10 @@ http {
 
 {% if nginx_servers %}{% for server_config in nginx_servers %}
     server {
-
-      {{ server_config.split('\n')|join('\t\n') }}
-
+        {{ server_config.split('\n')|join('\t\n') }}
     }
 {% endfor %}{% endif %}
 
     include {{nginx_dir}}/conf.d/*.conf;
     include {{nginx_sites_dir}}/*;
-
 }

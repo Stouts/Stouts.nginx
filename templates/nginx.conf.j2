@@ -14,7 +14,7 @@ events {
 }
 
 {% if nginx_streams_dir %}
-streams {
+stream {
     include {{nginx_streams_dir}}/*;
 }
 {% endif %}

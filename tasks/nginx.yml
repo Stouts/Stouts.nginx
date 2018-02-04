@@ -18,6 +18,26 @@
   htpasswd: path={{nginx_auth_file}} name={{item.name}} password={{item.password}}
   with_items: "{{nginx_auth_users}}"
 
+- name: Ensure the sites directory is exists
+  file:
+    name: "{{ nginx_sites_available_dir }}"
+    state: directory
+
+- name: Create vhosts from template
+  template:
+    src: "{{ item.template }}"
+    dest: "{{ nginx_sites_available_dir }}/{{ item.name }}.conf"
+  with_items:
+    - "{{ nginx_templatized_vhosts }}"
+
+- name: enable vhosts
+  file:
+    state: link
+    src: "{{ nginx_sites_available_dir }}/{{ item.name }}.conf"
+    dest: "{{ nginx_sites_dir }}/{{ item.name }}.conf"
+  with_items:
+    - "{{ nginx_templatized_vhosts }}"
+
 - name: Configure nginx
   template: src=nginx.conf.j2 dest={{nginx_dir}}/nginx.conf
   notify: nginx restart

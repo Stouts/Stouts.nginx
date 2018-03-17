@@ -20,10 +20,10 @@
 
 - name: Encrypt http auth passwords
   htpasswd:
-    path: "{{nginx_auth_file}}"
-    name: "{{item.name}}"
-    password: "{{item.password}}"
-  with_items: "{{nginx_auth_users}}"
+    path: "{{ nginx_auth_file }}"
+    name: "{{ item.name }}"
+    password: "{{ item.password }}"
+  with_items: "{{ nginx_auth_users }}"
 
 - name: Ensure the sites available directory exists
   file:
@@ -41,7 +41,7 @@
 
 - name: Ensure the sites directory is exists
   file:
-    name: "{{nginx_sites_dir}}"
+    name: "{{ nginx_sites_dir }}"
     state: directory
 
 - name: Enable vhosts (from templates)
@@ -56,12 +56,12 @@
 - name: Configure nginx
   template:
     src: nginx.conf.j2
-    dest: "{{nginx_dir}}/nginx.conf"
+    dest: "{{ nginx_dir }}/nginx.conf"
   notify: nginx restart
 
 
 - name: Ensure that nginx is started
   service:
-    name: "{{nginx_service_name}}"
+    name: "{{ nginx_service_name }}"
     state: started
     enabled: yes

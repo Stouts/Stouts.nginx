@@ -42,10 +42,10 @@ nginx_servers:                      # Setup servers (simplest interface, use cfg
                                     #       listen 80;
                                     #       server_name test.com;
                                     #       location / { root /test; index index.html; }
-nginx_templatized_vhosts:			# Setup vhosts files (one domain name per configuration file)
-									# by specifying source template path
-									# Ex: nginx_templatized_vhosts:
-									#	    - { "name": "example.com", "template": "templates/my_vhost.j2" }
+nginx_templatized_vhosts:           # Setup vhosts files (one domain name per configuration file)
+                                    # by specifying source template path
+                                    # Ex: nginx_templatized_vhosts:
+                                    #       - { "name": "example.com", "template": "templates/my_vhost.j2" }
 
 nginx_auth_file: "{{nginx_dir}}/.htpasswd" # Where stored passwords
 nginx_auth_users: []                # Setup users for http authentication

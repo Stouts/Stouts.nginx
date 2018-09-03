@@ -1,8 +1,7 @@
 Stouts.nginx
 ============
 
-[![Build Status](http://img.shields.io/travis/Stouts/Stouts.nginx.svg?style=flat-square)](https://travis-ci.org/Stouts/Stouts.nginx)
-[![Galaxy](http://img.shields.io/badge/galaxy-Stouts.nginx-blue.svg?style=flat-square)](https://galaxy.ansible.com/list#/roles/854)
+[![Build Status](http://img.shields.io/travis/bpetit/Stouts.nginx.svg?style=flat-square)](https://travis-ci.org/bpetit/Stouts.nginx)
 
 Ansible role which simple manage nginx
 
@@ -83,12 +82,16 @@ Licensed under the MIT License. See the LICENSE file for details.
 
 #### Feedback, bug-reports, requests, ...
 
-Are [welcome](https://github.com/Stouts/Stouts.nginx/issues)!
+Are [welcome](https://github.com/bpetit/Stouts.nginx/issues)!
 
 If you wish to express your appreciation for the role, you are welcome to send
-a postcard to:
+a postcard to the original author:
 
     Kirill Klenov
     pos. Severny 8-3
     MO, Istra, 143500
     Russia
+
+Or, if it is about this fork:
+
+	Benoit Petit <bpetit@b0rk.in>

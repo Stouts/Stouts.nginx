@@ -1,10 +1,16 @@
 ---
 
 - name: Ensure libselinux-python is installed
-  yum: name=libselinux-python
+  yum:
+    name: libselinux-python
 
 - name: Setup repo
-  copy: src=nginx.repo dest=/etc/yum.repos.d/nginx.repo
+  copy:
+    src: nginx.repo
+    dest: /etc/yum.repos.d/nginx.repo
 
 - name: Install Nginx
-  yum: name={{nginx_yum_pkg}} enablerepo={{nginx_yum_enablerepo or None}} disablerepo={{nginx_yum_disablerepo or None}}
+  yum:
+    name: "{{nginx_yum_pkg}}"
+    enablerepo: "{{nginx_yum_enablerepo or None}}"
+    disablerepo: "{{nginx_yum_disablerepo or None}}"

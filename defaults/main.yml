@@ -2,6 +2,7 @@
 
 nginx_enabled: yes                  # The role in enabled
 nginx_dir: /etc/nginx               # Nginx config directory
+nginx_sites_available_dir: "{{ nginx_dir }}/sites-available"
 nginx_sites_dir: "{{nginx_dir}}/sites-enabled" # Nginx include directory
 nginx_default_site: "{{nginx_sites_dir}}/default"
 nginx_delete_default_site: no

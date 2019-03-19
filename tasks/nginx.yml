@@ -7,23 +7,62 @@
   when: ansible_os_family == 'RedHat'
 
 - name: Ensure that Nginx user is exist
-  user: name={{nginx_user}} system=yes
+  user:
+    name: "{{ nginx_user }}"
+    system: yes
 
 - name: Delete default site
-  action: file path={{nginx_default_site}} state=absent
+  file:
+    path: "{{ nginx_default_site }}"
+    state: absent
   when: nginx_delete_default_site
   notify: nginx restart
 
 - name: Encrypt http auth passwords
-  htpasswd: path={{nginx_auth_file}} name={{item.name}} password={{item.password}}
-  with_items: "{{nginx_auth_users}}"
+  htpasswd:
+    path: "{{ nginx_auth_file }}"
+    name: "{{ item.name }}"
+    password: "{{ item.password }}"
+  with_items: "{{ nginx_auth_users }}"
 
-- name: Configure nginx
-  template: src=nginx.conf.j2 dest={{nginx_dir}}/nginx.conf
-  notify: nginx restart
+- name: Ensure the sites available directory exists
+  file:
+    name: "{{ nginx_sites_available_dir }}"
+    state: directory
+  when: nginx_sites_available_dir is defined
+
+- name: Create vhosts from template
+  template:
+    src: "{{ item.template }}"
+    dest: "{{ nginx_sites_available_dir }}/{{ item.name }}.conf"
+  with_items:
+    - "{{ nginx_templatized_vhosts }}"
+  when: nginx_templatized_vhosts is defined
 
 - name: Ensure the sites directory is exists
-  file: name={{nginx_sites_dir}} state=directory
+  file:
+    name: "{{ nginx_sites_dir }}"
+    state: directory
+
+- name: Enable vhosts (from templates)
+  file:
+    state: link
+    src: "{{ nginx_sites_available_dir }}/{{ item.name }}.conf"
+    dest: "{{ nginx_sites_dir }}/{{ item.name }}.conf"
+    validate: nginx -t
+  with_items:
+    - "{{ nginx_templatized_vhosts }}"
+  when: nginx_templatized_vhosts is defined
+
+- name: Configure nginx
+  template:
+    src: nginx.conf.j2
+    dest: "{{ nginx_dir }}/nginx.conf"
+  notify: nginx restart
+
 
 - name: Ensure that nginx is started
-  service: name={{nginx_service_name}} state=started enabled=yes
+  service:
+    name: "{{ nginx_service_name }}"
+    state: started
+    enabled: yes

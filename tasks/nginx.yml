@@ -49,10 +49,10 @@
     state: link
     src: "{{ nginx_sites_available_dir }}/{{ item.name }}.conf"
     dest: "{{ nginx_sites_dir }}/{{ item.name }}.conf"
+    validate: nginx -t
   with_items:
     - "{{ nginx_templatized_vhosts }}"
   when: nginx_templatized_vhosts is defined
-  validate: nginx -t
 
 - name: Configure nginx
   template:

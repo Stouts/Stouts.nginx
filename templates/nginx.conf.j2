@@ -29,6 +29,8 @@ http {
     keepalive_timeout  {{nginx_keepalive_timeout}};
     keepalive_requests  {{nginx_keepalive_requests}};
 
+    client_max_body_size {{ nginx_client_max_body_size | default('2M') }};
+
 {% if nginx_gzip %}
     gzip on;
     gzip_disable "msie6";

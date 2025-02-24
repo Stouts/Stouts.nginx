@@ -1,9 +1,9 @@
 ---
 
-- import_tasks: install.deb.yml
+- include_tasks: install.deb.yml
   when: ansible_os_family == 'Debian'
 
-- import_tasks: install.red.yml
+- include_tasks: install.red.yml
   when: ansible_os_family == 'RedHat'
 
 - name: Ensure that Nginx user is exist

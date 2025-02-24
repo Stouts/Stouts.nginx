@@ -1,5 +1,5 @@
 ---
 
-- import_tasks: nginx.yml
+- include_tasks: nginx.yml
   when: nginx_enabled
   tags: [nginx]

@@ -3,12 +3,15 @@
 - include_vars: "{{ansible_distribution}}.yml"
 
 - name: Install dependencies
-  apt: name=python-pycurl
+  apt:
+    name: python-pycurl
 
 - name: Add nginx repository
-  apt_repository: repo=ppa:nginx/stable
+  apt_repository:
+    repo: ppa:nginx/stable
   when: nginx_apt_use_ppa_repo and ansible_distribution == "Ubuntu"
 
 - name: Install Dependencies
-  apt: name={{item}}
-  with_items: [ nginx, python-passlib ] 
+  apt:
+    name: "{{ item }}"
+  with_items: [ nginx, python-passlib ]
